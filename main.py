@@ -7,7 +7,19 @@ from datetime import datetime
 
 class Library:
 
+    database = "library.json"
+    p = Path(databse)
+    data = {"books":[],"members":[]}
 
+    # load exisiting data to json or create your json
+    if p.exists():
+        with open(database,"r") as f:
+            content = f.read().strip()
+            if content:
+                data = json.loads(content)
+    else:
+        with open(database,"w") as f:
+            json.dump(data,f,indent=4)
 
 
 
