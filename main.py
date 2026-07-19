@@ -57,6 +57,28 @@ class Library:
             return
         for i,j in enumerate(Library.data["books"]):
             print(f"{i+1}. {j["book_id"]:25} {j["book_name"][:20]:25} {j["author_name"][:20]:25} {j["available_copies"]}/{j["total_copies"]:>3}")
+    
+
+    def add_members(self):
+        name = input("enter the name")
+        email = input("enter the email")
+
+        member = {
+            "id" : self.generate_id("M"),
+            "name": name,
+            "email": email,
+            "borowed": []
+        }
+        self.data["members"].append(member)
+        Library.save_data()
+    
+    def list_members(self):
+        if not self.data["members"]:
+            print("Sorry no members found")
+            return
+        for i,j in enumerate(self.data["members"]):
+            print(f"{i+1}. {j["id"]:25} {j["name"][:20]:25} {j["email"]:25} {j["borowed"]}")
+
 
 
 
@@ -102,3 +124,7 @@ if choice == 1:
     hello.add_book()
 elif choice == 2:
     hello.list_books()
+elif choice == 3:
+    hello.add_members()
+elif choice == 4:
+    hello.list_members()
