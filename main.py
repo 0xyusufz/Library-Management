@@ -92,7 +92,10 @@ class Library:
         book_id = input("enter the book id:-").strip()
         for i in Library.data["books"]:
             if i["book_id"] == book_id:
-                if i["available_copies"] > 0:
+                if i["available_copies"] == 0:
+                    print("no copies available,sorry")
+                    return
+                elif i["available_copies"] > 0:
                     print(f"total copies avaible is {i["available_copies"]}")
                 borrow_copies = int(input(f"enter a total book you want to borrow, ypu can borrow max {i["available_copies"]}"))
                 if borrow_copies > i["available_copies"]:
@@ -101,7 +104,13 @@ class Library:
                     i["available_copies"] -= borrow_copies
                     for j in Library.data["members"]:
                         if j["id"] == member_id:
-                            j["borowed"].append(i["book_name"])
+                            book_entry = {
+                                "book_id": i["book_id"],
+                                "book_name": i["book_name"],
+                                "borrowed_copies": borrow_copies,
+                                "borrow on": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                            }
+                            j["borowed"].append(book_entry)
                             Library.save_data()
                             print(f"borrowed {borrow_copies} of book name {i["book_name"]}")
                             return
