@@ -186,4 +186,4 @@ while True:
     elif choice == 6:
         hello.return_book()
     elif choice == 0:
-        break
+        exit(0)
