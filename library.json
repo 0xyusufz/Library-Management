@@ -5,7 +5,7 @@
             "book_name": "edf",
             "author_name": "wedf",
             "total_copies": 22,
-            "available_copies": 0,
+            "available_copies": 22,
             "date": "2026-07-19 21:31:37"
         },
         {
@@ -13,7 +13,7 @@
             "book_name": "wsdcfv",
             "author_name": "wesdfcv",
             "total_copies": 22,
-            "available_copies": 1,
+            "available_copies": 22,
             "date": "2026-07-19 21:31:52"
         },
         {
@@ -28,8 +28,8 @@
             "book_id": "B-7QCQ8",
             "book_name": "wedfvg",
             "author_name": "wedrfv",
-            "total_copies": 11111,
-            "available_copies": 10000,
+            "total_copies": 10,
+            "available_copies": 10,
             "date": "2026-07-19 22:04:29"
         }
     ],
@@ -38,14 +38,7 @@
             "id": "M-KFHA2",
             "name": "yusuf",
             "email": "yusuf@gmail.com",
-            "borowed": [
-                {
-                    "book_id": "B-0MA34",
-                    "book_name": "wsdcfv",
-                    "borrowed_copies": 1,
-                    "borrow on": "2026-07-19 23:54:19"
-                }
-            ]
+            "borowed": []
         }
     ]
 }

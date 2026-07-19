@@ -115,6 +115,39 @@ class Library:
                             print(f"borrowed {borrow_copies} of book name {i["book_name"]}")
                             return
         print(f"no book found of id- {book_id} ")
+    
+
+    def return_book(self):
+        self.list_members()
+        member_id = input("enter the member id")
+        for i in Library.data["members"]:
+            if i["id"] == member_id:
+                print(f"total book borrowed is {len(i["borowed"])}")
+                for x,j in enumerate(i["borowed"]):
+                    print(f"{x+1}. {j["book_id"]:25} name:- {j["book_name"]:25} borrowed copies:-{j["borrowed_copies"]}\t \t borrow on :- {j["borrow on"][:11]:25}")
+                book_id = input("enter a book id to return")
+                for k in i["borowed"]:
+                    if k["book_id"] == book_id:
+                        print(f"total copies available is {k["borrowed_copies"]}")
+                        return_copy = int(input("how much you want to return?"))
+                        if return_copy >0 and return_copy <= k["borrowed_copies"]:
+                            for l in Library.data["books"]:
+                                if l["book_id"] == book_id:
+                                    l["available_copies"] += return_copy
+                            if return_copy == k["borrowed_copies"]:
+                                i["borowed"].remove(k)
+                                self.save_data()
+                                return
+                            else:
+                                k["borrowed_copies"] -= return_copy
+                                self.save_data()
+                                return
+                        else:
+                            print("enter a valid number")
+                    else:
+                        print("book not found")
+            else:
+                print("no member found")
         
 
 
@@ -146,28 +179,30 @@ hello = Library()
 
 
 
-
-print("="*50)
-print("Library Management System")
-print("="*50)
-print("1. Add Book")
-print("2. List Books")
-print("3. Add Members")
-print("4. List Members")
-print("5. Borrow Books")
-print("6. Return Books")
-print("0. Exit the Portal")
-print("-"*50)
-choice = int(input("What Task you want to perform:- "))
-
-
-if choice == 1:
-    hello.add_book()
-elif choice == 2:
-    hello.list_books()
-elif choice == 3:
-    hello.add_members()
-elif choice == 4:
-    hello.list_members()
-elif choice == 5:
-    hello.borrow()
+while True:
+    print("="*50)
+    print("Library Management System")
+    print("="*50)
+    print("1. Add Book")
+    print("2. List Books")
+    print("3. Add Members")
+    print("4. List Members")
+    print("5. Borrow Books")
+    print("6. Return Books")
+    print("0. Exit the Portal")
+    print("-"*50)
+    choice = int(input("What Task you want to perform:- "))
+    if choice == 1:
+        hello.add_book()
+    elif choice == 2:
+        hello.list_books()
+    elif choice == 3:
+        hello.add_members()
+    elif choice == 4:
+        hello.list_members()
+    elif choice == 5:
+        hello.borrow()
+    elif choice == 6:
+        hello.return_book()
+    elif choice == 0:
+        break
