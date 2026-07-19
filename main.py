@@ -8,7 +8,7 @@ from datetime import datetime
 class Library:
 
     database = "library.json"
-    p = Path(databse)
+    p = Path(database)
     data = {"books":[],"members":[]}
 
     # load exisiting data to json or create your json
@@ -30,8 +30,10 @@ class Library:
         for i in range(5):
             random_id += random.choice(string.ascii_uppercase + string.digits)
         return f"{Prefix}-{random_id}"
-
-
+    @classmethod
+    def save_data(cls):
+        with open(cls.database,"w") as f:
+            json.dump(cls.data,f,indent=4,default= str)
     # ADDING A NEW BOOKS
     # instance method
     def add_book(self):
@@ -46,7 +48,8 @@ class Library:
             "available_copies": copies,
             "date": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         }
-        print(book)
+        self.data["books"].append(book)
+        Library.save_data()
 
 
 
