@@ -4,6 +4,62 @@ import string
 from pathlib import Path
 from datetime import datetime
 
+
+class Library:
+
+
+
+
+
+
+    @staticmethod
+    def generate_id(Prefix ="B"):
+        random_id = ""
+        for i in range(5):
+            random_id += random.choice(string.ascii_uppercase + string.digits)
+        return f"{Prefix}-{random_id}"
+
+
+    # ADDING A NEW BOOKS
+    # instance method
+    def add_book(self):
+        book = input("enter your book name")
+        author = input("enter a author name")
+        copies = int(input("enter total number of copies"))
+        book ={
+            "book_id": self.generate_id(),
+            "book_name": book,
+            "author_name": author,
+            "total_copies": copies,
+            "available_copies": copies,
+            "date": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        }
+        print(book)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+hello = Library()
+
+
+
+
+
+
 print("="*50)
 print("Library Management System")
 print("="*50)
@@ -16,3 +72,7 @@ print("6. Return Books")
 print("0. Exit the Portal")
 print("-"*50)
 choice = int(input("What Task you want to perform:- "))
+
+
+if choice == 1:
+    hello.add_book()
