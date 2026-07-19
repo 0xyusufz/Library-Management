@@ -123,6 +123,9 @@ class Library:
         for i in Library.data["members"]:
             if i["id"] == member_id:
                 print(f"total book borrowed is {len(i["borowed"])}")
+                if not i["borowed"]:
+                    print("no book borrowed")
+                    return
                 for x,j in enumerate(i["borowed"]):
                     print(f"{x+1}. {j["book_id"]:25} name:- {j["book_name"]:25} borrowed copies:-{j["borrowed_copies"]}\t \t borrow on :- {j["borrow on"][:11]:25}")
                 book_id = input("enter a book id to return")
@@ -153,29 +156,7 @@ class Library:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 hello = Library()
-
-
 
 
 
