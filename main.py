@@ -78,6 +78,38 @@ class Library:
             return
         for i,j in enumerate(self.data["members"]):
             print(f"{i+1}. {j["id"]:25} {j["name"][:20]:25} {j["email"]:25} {j["borowed"]}")
+    
+    def borrow(self):
+        self.list_members()
+        member_id = input("enter the member id:- ").strip()
+        for i in Library.data["members"]:
+            if i["id"] == member_id:
+                break
+            else:
+                print(f"no member found of id- {member_id}")
+                return
+        self.list_books()
+        book_id = input("enter the book id:-").strip()
+        for i in Library.data["books"]:
+            if i["book_id"] == book_id:
+                if i["available_copies"] > 0:
+                    print(f"total copies avaible is {i["available_copies"]}")
+                borrow_copies = int(input(f"enter a total book you want to borrow, ypu can borrow max {i["available_copies"]}"))
+                if borrow_copies > i["available_copies"]:
+                    print(f"you cant borrow {borrow_copies} copies , pls enter max {i["available_copies"]}:- ")
+                else:
+                    i["available_copies"] -= borrow_copies
+                    for j in Library.data["members"]:
+                        if j["id"] == member_id:
+                            j["borowed"].append(i["book_name"])
+                            Library.save_data()
+                            print(f"borrowed {borrow_copies} of book name {i["book_name"]}")
+                            return
+        print(f"no book found of id- {book_id} ")
+        
+
+
+
 
 
 
@@ -128,3 +160,5 @@ elif choice == 3:
     hello.add_members()
 elif choice == 4:
     hello.list_members()
+elif choice == 5:
+    hello.borrow()

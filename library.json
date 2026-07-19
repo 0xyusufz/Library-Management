@@ -5,7 +5,7 @@
             "book_name": "edf",
             "author_name": "wedf",
             "total_copies": 22,
-            "available_copies": 22,
+            "available_copies": 12,
             "date": "2026-07-19 21:31:37"
         },
         {
@@ -29,7 +29,7 @@
             "book_name": "wedfvg",
             "author_name": "wedrfv",
             "total_copies": 11111,
-            "available_copies": 11111,
+            "available_copies": 10000,
             "date": "2026-07-19 22:04:29"
         }
     ],
@@ -38,7 +38,10 @@
             "id": "M-KFHA2",
             "name": "yusuf",
             "email": "yusuf@gmail.com",
-            "borowed": []
+            "borowed": [
+                "edf",
+                "wedfvg"
+            ]
         }
     ]
 }
