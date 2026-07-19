@@ -51,6 +51,15 @@ class Library:
         self.data["books"].append(book)
         Library.save_data()
 
+    def list_books(self):
+        if not Library.data["books"]:
+            print("Sorry no books found")
+            return
+        for i,j in enumerate(Library.data["books"]):
+            print(f"{i+1}. {j["book_id"]:25} {j["book_name"][:20]:25} {j["author_name"][:20]:25} {j["available_copies"]}/{j["total_copies"]:>3}")
+
+
+
 
 
 
@@ -91,3 +100,5 @@ choice = int(input("What Task you want to perform:- "))
 
 if choice == 1:
     hello.add_book()
+elif choice == 2:
+    hello.list_books()
